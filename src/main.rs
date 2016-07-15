@@ -112,13 +112,12 @@ fn main() {
     println!("digraph cratesio {{");
     for krate in crates.iter() {
         let count = rev_dep_count.get(krate).map_or(0, |n| *n);
-        println!("  {ident}[label=\"{name}\" href=\"https://crates.io/crates/{name}\" fontsize={size}]",
-                 ident = krate.replace("-", "_"),
+        println!("  \"{name}\"[label=\"{name}\" href=\"https://crates.io/crates/{name}\" fontsize={size}]",
                  name = krate,
                  size = 14.0 + count as f64 / 2.0);
     }
     for &(ref source, ref target) in edges.iter() {
-        println!("  {} -> {}", source.replace("-", "_"), target.replace("-", "_"))
+        println!("  \"{}\" -> \"{}\"", source, target)
     }
 
     println!("}}");
