@@ -7,10 +7,10 @@ entire: out.svg
 filtered: out-filtered.svg
 
 target/renderer: src/main.rs Cargo.toml Cargo.lock
-	cargo build
+	cargo build --release
 
 out.dot: target/renderer
-	./target/renderer > out.dot
+	./target/release/renderer > out.dot
 
 out-filtered.dot: out.dot
 	gvpr -c 'N{$.degree == 0}' out.dot > out-filtered.dot
